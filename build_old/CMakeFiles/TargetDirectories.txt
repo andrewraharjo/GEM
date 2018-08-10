@@ -1,0 +1,3 @@
+/srv/oscc-joystick-input/build/CMakeFiles/rebuild_cache.dir
+/srv/oscc-joystick-input/build/CMakeFiles/edit_cache.dir
+/srv/oscc-joystick-input/build/CMakeFiles/oscc-joystick-commander.dir
