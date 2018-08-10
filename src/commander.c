@@ -28,6 +28,9 @@
 #define JOYSTICK_AXIS_STEER (SDL_CONTROLLER_AXIS_LEFTX)
 #define JOYSTICK_BUTTON_ENABLE_CONTROLS (SDL_CONTROLLER_BUTTON_START)
 #define JOYSTICK_BUTTON_DISABLE_CONTROLS (SDL_CONTROLLER_BUTTON_BACK)
+#define JOYSTICK_BUTTON_NEUTRAL (SDL_CONTROLLER_BUTTON_Y)
+#define JOYSTICK_BUTTON_FORWARD (SDL_CONTROLLER_BUTTON_X)
+#define JOYSTICK_BUTTON_REVERSE (SDL_CONTROLLER_BUTTON_B)
 #define BRAKES_ENABLED_MIN (0.05)
 #define JOYSTICK_DELAY_INTERVAL (50000)
 #define COMMANDER_ENABLED ( 1 )
@@ -46,6 +49,9 @@ static int get_normalized_position( unsigned long axis_index, double * const nor
 static int check_trigger_positions( );
 static int commander_disable_controls( );
 static int commander_enable_controls( );
+static int commander_neutral( );
+static int commander_forward( );
+static int commander_reverse( );
 static int get_button( unsigned long button, unsigned int* const state );
 static int command_brakes( );
 static int command_throttle( );
@@ -148,7 +154,54 @@ int check_for_controller_update( )
 
         disable_button_previous = disable_button_current;
     }
+	
+	if ( return_code == OSCC_OK )
+    {
+        return_code = get_button( JOYSTICK_BUTTON_NEUTRAL,
+                                  &disable_button_current );
+    }
 
+            if ( return_code == OSCC_OK )
+            {
+                if ( (disable_button_previous != 1)
+                    && (disable_button_current != 0 ) )
+                {
+                    return_code = commander_neutral( );
+                }
+
+            }
+
+  if ( return_code == OSCC_OK )
+    {
+        return_code = get_button( JOYSTICK_BUTTON_FORWARD,
+                                  &disable_button_current );
+    }
+
+            if ( return_code == OSCC_OK )
+            {
+                if ( (disable_button_previous != 1)
+                    && (disable_button_current != 0 ) )
+                {
+                    return_code = commander_forward( );
+                }
+
+            }
+
+  if ( return_code == OSCC_OK )
+    {
+        return_code = get_button( JOYSTICK_BUTTON_REVERSE,
+                                  &disable_button_current );
+    }
+
+            if ( return_code == OSCC_OK )
+            {
+                if ( (disable_button_previous != 1)
+                    && (disable_button_current != 0 ) )
+                {
+                    return_code = commander_reverse( );
+                }
+
+            }
     static unsigned int enable_button_previous = 0;
     unsigned int enable_button_current = 0;
 
@@ -277,6 +330,49 @@ static int commander_disable_controls( )
     return return_code;
 }
 
+static int commander_neutral( )
+{
+    int return_code = OSCC_ERROR;
+
+    if ( (commander_enabled == COMMANDER_ENABLED)
+        && (control_enabled == true) )
+    {
+        printf( "Neutral\n" );
+
+        return_code = oscc_neutral();
+    }
+    return return_code;
+}
+
+static int commander_forward( )
+{
+    int return_code = OSCC_ERROR;
+
+    if ( (commander_enabled == COMMANDER_ENABLED)
+        && (control_enabled == true) )
+    {
+        printf( "Forward\n" );
+
+        return_code = oscc_forward();
+    }
+
+    return return_code;
+}
+
+static int commander_reverse( )
+{
+    int return_code = OSCC_ERROR;
+
+    if ( (commander_enabled == COMMANDER_ENABLED)
+        && (control_enabled == true) )
+    {
+        printf( "Reverse\n" );
+
+        return_code = oscc_reverse();
+    }
+
+    return return_code;
+}
 static int commander_enable_controls( )
 {
     int return_code = OSCC_ERROR;

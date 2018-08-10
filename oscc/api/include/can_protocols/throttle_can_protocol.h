@@ -36,6 +36,9 @@
  *
  */
 #define OSCC_THROTTLE_REPORT_CAN_ID (0x63)
+#define OSCC_NEUTRAL_CAN_ID (0x32)
+#define OSCC_FORWARD_CAN_ID (0x30)
+#define OSCC_REVERSE_CAN_ID (0x31)
 
 /*
  * @brief Throttle report message (CAN frame) length.

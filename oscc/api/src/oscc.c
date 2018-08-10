@@ -122,6 +122,70 @@ oscc_result_t oscc_disable( void )
     return result;
 }
 
+
+
+    // FAKE!! Should be updated to real.
+oscc_result_t oscc_neutral( void )
+{
+    oscc_result_t result = OSCC_ERROR;
+
+
+    oscc_throttle_enable_s throttle_enable =
+    {
+        .magic[0] = ( uint8_t ) OSCC_DRIVE_1,
+        .magic[1] = ( uint8_t ) OSCC_DRIVE_4 
+    };
+
+    result = oscc_can_write(
+        OSCC_NEUTRAL_CAN_ID,
+        (void *) &throttle_enable,
+        sizeof(throttle_enable) );
+
+
+    return result;
+}
+
+    // FAKE!! Should be updated to real.
+oscc_result_t oscc_forward( void )
+{
+    oscc_result_t result = OSCC_ERROR;
+
+
+    oscc_throttle_enable_s throttle_enable =
+    {
+        .magic[0] = ( uint8_t ) OSCC_DRIVE_1,
+        .magic[1] = ( uint8_t ) OSCC_DRIVE_0
+    };
+
+    result = oscc_can_write(
+        OSCC_FORWARD_CAN_ID,
+        (void *) &throttle_enable,
+        sizeof(throttle_enable) );
+
+
+    return result;
+}
+
+    // FAKE!! Should be updated to real.
+oscc_result_t oscc_reverse( void )
+{
+    oscc_result_t result = OSCC_ERROR;
+
+
+    oscc_throttle_enable_s throttle_enable =
+    {
+        .magic[0] = ( uint8_t ) OSCC_DRIVE_1,
+        .magic[1] = ( uint8_t ) OSCC_DRIVE_2
+    };
+
+    result = oscc_can_write(
+        OSCC_REVERSE_CAN_ID,
+        (void *) &throttle_enable,
+        sizeof(throttle_enable) );
+
+
+    return result;
+}
 oscc_result_t oscc_publish_brake_position( double brake_position )
 {
     oscc_result_t result = OSCC_ERROR;

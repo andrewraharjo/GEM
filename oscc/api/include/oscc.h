@@ -71,7 +71,9 @@ oscc_result_t oscc_enable( void );
  */
 oscc_result_t oscc_disable( void );
 
-
+oscc_result_t oscc_neutral( void );
+oscc_result_t oscc_forward( void );
+oscc_result_t oscc_reverse( void );
 /**
  * @brief Publish message with requested brake pedal position to
  *        brake module.
