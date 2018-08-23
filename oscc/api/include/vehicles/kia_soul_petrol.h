@@ -236,7 +236,7 @@ typedef struct
  * @brief Maximum clamped PID value of the release solenoid.
  *
  */
-#define BRAKE_PID_RELEASE_SOLENOID_CLAMPED_MAX ( 60.0 )
+#define BRAKE_PID_RELEASE_SOLENOID_CLAMPED_MAX ( 70.0 )
 
 /*
  * @brief Minimum duty cycle that begins to actuate the actuation solenoid.
@@ -260,7 +260,7 @@ typedef struct
  * 3.921 KHz PWM frequency
  *
  */
-#define BRAKE_RELEASE_SOLENOID_DUTY_CYCLE_MIN ( 65.0 )
+#define BRAKE_RELEASE_SOLENOID_DUTY_CYCLE_MIN ( 85.0 )
 
 /*
  * @brief Maximum duty cycle where release solenoid has reached its stop.
@@ -268,7 +268,7 @@ typedef struct
  * 3.921 KHz PWM frequency
  *
  */
-#define BRAKE_RELEASE_SOLENOID_DUTY_CYCLE_MAX ( 115.0 )
+#define BRAKE_RELEASE_SOLENOID_DUTY_CYCLE_MAX ( 120.0 )
 
 
 
