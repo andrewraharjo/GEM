@@ -268,7 +268,7 @@ typedef struct
  * 3.921 KHz PWM frequency
  *
  */
-#define BRAKE_RELEASE_SOLENOID_DUTY_CYCLE_MAX ( 100.0 )
+#define BRAKE_RELEASE_SOLENOID_DUTY_CYCLE_MAX ( 115.0 )
 
 
 
